@@ -1,0 +1,62 @@
+# Load libraries
+library(tidyverse)
+
+# Read data set
+# read_csv from the link, check this
+#game_data <- read_csv("https://raw.githubusercontent.com/UniversalTourist/meetup-presentations_helsinki/master/dplyr_data_set.csv")
+
+game_data <- read_csv("https://tinyurl.com/3a5hxnra")
+
+game_data <- read_csv("dplyr_data_set.csv")
+
+
+#glimpse at data
+glimpse(game_data)
+
+game_data %>% 
+  View()
+
+# they are called data_frame or tibble
+
+#pipe operator
+# %>% 
+#short cuts
+
+#select 
+game_data %>% 
+  select(date, game_name, in_app_revenue)
+
+game_date %>% 
+  select(date, genre, daily_active_users)
+
+#filter 
+game_data %>% 
+  filter(date >= '2021-01-01' & date < '2021-04-01') 
+
+game_data %>% 
+  filter(genre == 'puzzle')
+
+game_data %>% 
+  filter(platform != 'Android')
+
+  
+#mutate
+game_data %>% 
+  select(date,in_app_revenue, daily_active_users) %>% 
+  mutate(iap_per_dau = in_app_revenue / daily_active_users) %>% 
+  mutate(iap_per_dau_in_euros = iap_per_dau * 1.02)
+
+
+# group_by & summarise
+game_data %>% 
+  select(date, daily_active_users, platform) %>% 
+  group_by(platform) %>% 
+  summarise(avg_dau = mean(daily_active_users))
+  
+
+game_data %>% 
+  select(date, in_app_revenue, platform, genre) %>% 
+  filter(platform == 'iOS') %>% 
+  group_by(genre) %>% 
+  summarise(avg_iap_revenue = mean(in_app_revenue))  
+  
