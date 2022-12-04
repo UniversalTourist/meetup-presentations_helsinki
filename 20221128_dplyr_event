@@ -6,7 +6,7 @@ library(tidyverse)
 
 game_data <- read_csv("https://tinyurl.com/3a5hxnra")
 
-game_data <- read_csv("dplyr_data_set.csv")
+#game_data <- read_csv("dplyr_data_set.csv")
 
 
 #glimpse at data
